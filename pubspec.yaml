@@ -27,12 +27,15 @@ dev_dependencies:
   riverpod_generator: ^2.3.11
   custom_lint: ^0.6.0
   riverpod_lint: ^2.3.9
-  flutter_launcher_icons: "^0.9.2"
+  flutter_launcher_icons: "^0.13.0"
 
 flutter:
   uses-material-design: true
 
-flutter_icons:
+flutter_launcher_icons:
   android: true
   ios: true
   image_path: "assets/icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "assets/icon_background.png"
+  adaptive_icon_foreground: "assets/icon_foreground.png"
