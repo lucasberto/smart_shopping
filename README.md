@@ -2,7 +2,7 @@
 
 ## Overview
 
-Smart Shopping is a dynamic, real-time collaborative shopping list application built with Flutter. It transforms the way you manage shopping lists by enabling seamless collaboration with friends and family.
+Smart Shopping is a dynamic, real-time collaborative shopping list application that I built from scratch as part of my Flutter learning journey. This project showcases my ability to create a full-featured application with complex functionalities like real-time updates and user collaboration. What started as a learning challenge evolved into a practical tool that transforms the way users manage shopping lists by enabling seamless collaboration with friends and family.
 
 ## Key Features
 
