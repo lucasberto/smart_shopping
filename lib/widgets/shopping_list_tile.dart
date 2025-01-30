@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:smart_shopping/screens/shopping_list.dart';
 import 'package:smart_shopping/services/firestore_database.dart';
 
+import 'package:string_literal_finder_annotations/string_literal_finder_annotations.dart';
+
 class ShoppingListTile extends StatelessWidget {
   const ShoppingListTile({
     super.key,
@@ -13,6 +15,7 @@ class ShoppingListTile extends StatelessWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> listItem;
   final bool isShared;
 
+  @NonNls
   @override
   Widget build(BuildContext context) {
     final sharedWithCount = listItem.data().containsKey('shared_with')

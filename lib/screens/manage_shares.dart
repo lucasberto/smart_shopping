@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:smart_shopping/main.dart';
 import 'package:smart_shopping/services/firestore_database.dart';
 import 'package:smart_shopping/widgets/share_shopping_list.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:string_literal_finder_annotations/string_literal_finder_annotations.dart';
 
 class ManageSharesScreen extends StatefulWidget {
   const ManageSharesScreen({
@@ -53,7 +55,7 @@ class _ManageSharesScreenState extends State<ManageSharesScreen> {
           color: currentMaterialScheme.onPrimary,
         ),
         title: Text(
-          'Gerenciar Compartilhamento',
+          AppLocalizations.of(context)!.manageSharesPageTitle,
           style: TextStyle(
             color: currentMaterialScheme.onPrimary,
           ),
@@ -88,7 +90,7 @@ class _ManageSharesScreenState extends State<ManageSharesScreen> {
                 ],
               ),
               const SizedBox(height: 24),
-              const Text('Compartilhada com:'),
+              Text(AppLocalizations.of(context)!.sharedWith),
               const SizedBox(height: 16),
               FutureBuilder(
                 future: usersFuture,
@@ -99,13 +101,15 @@ class _ManageSharesScreenState extends State<ManageSharesScreen> {
                     );
                   }
                   if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Center(
-                      child: Text('Você ainda não compartilhou essa lista'),
+                    return Center(
+                      child:
+                          Text(AppLocalizations.of(context)!.listNotSharedYet),
                     );
                   }
                   if (snapshot.hasError) {
-                    return const Center(
-                      child: Text('Algo deu errado =('),
+                    return Center(
+                      child: Text(
+                          AppLocalizations.of(context)!.somethingWentWrong),
                     );
                   }
                   final users = snapshot.data!;
@@ -131,14 +135,14 @@ class _ManageSharesScreenState extends State<ManageSharesScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      user['username'],
+                                      user[nonNls('username')],
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyLarge!
                                           .copyWith(fontSize: 18),
                                     ),
                                     Text(
-                                      user['email'],
+                                      user[nonNls('email')],
                                     )
                                   ],
                                 ),
@@ -146,17 +150,18 @@ class _ManageSharesScreenState extends State<ManageSharesScreen> {
                               const SizedBox(width: 24),
                               ElevatedButton(
                                 onPressed: () {
-                                  removeShare(
-                                      user['uid'], widget.shoppingListId);
+                                  removeShare(user[nonNls('uid')],
+                                      widget.shoppingListId);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.all(10),
                                   backgroundColor:
                                       const Color.fromARGB(255, 253, 196, 196),
                                 ),
-                                child: const Text(
-                                  'Remover',
-                                  style: TextStyle(
+                                child: Text(
+                                  AppLocalizations.of(context)!
+                                      .removeButtonLabel,
+                                  style: const TextStyle(
                                     color: Color.fromARGB(255, 182, 24, 13),
                                   ),
                                 ),

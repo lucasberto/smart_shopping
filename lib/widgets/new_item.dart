@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_shopping/services/firestore_database.dart';
+import 'package:string_literal_finder_annotations/string_literal_finder_annotations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewItem extends StatefulWidget {
   const NewItem({
@@ -32,6 +34,7 @@ class _NewItemState extends State<NewItem> {
     _quantityController.dispose();
   }
 
+  @NonNls
   @override
   void initState() {
     super.initState();
@@ -76,8 +79,8 @@ class _NewItemState extends State<NewItem> {
                 Expanded(
                   child: TextField(
                     controller: _nameController,
-                    decoration:
-                        const InputDecoration(labelText: 'Nome do item'),
+                    decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.itemNameLabel),
                     maxLength: 50,
                     autocorrect: true,
                     enableSuggestions: true,
@@ -91,8 +94,9 @@ class _NewItemState extends State<NewItem> {
                   child: TextField(
                     controller: _quantityController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      label: Text('Quantidade'),
+                    decoration: InputDecoration(
+                      label:
+                          Text(AppLocalizations.of(context)!.itemQuantityLabel),
                     ),
                     autocorrect: false,
                     enableSuggestions: false,
@@ -111,7 +115,7 @@ class _NewItemState extends State<NewItem> {
                   child: _isProcessing
                       ? const CircularProgressIndicator()
                       : Text(
-                          'Adicionar',
+                          AppLocalizations.of(context)!.addButtonLabel,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
@@ -122,7 +126,7 @@ class _NewItemState extends State<NewItem> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('Cancelar'),
+                  child: Text(AppLocalizations.of(context)!.cancelButtonLabel),
                 )
               ],
             )

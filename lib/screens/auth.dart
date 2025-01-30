@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_shopping/main.dart';
 import 'package:smart_shopping/providers/auth_provider.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:string_literal_finder_annotations/string_literal_finder_annotations.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
@@ -16,9 +18,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   final _form = GlobalKey<FormState>();
 
   var _isLogin = true;
-  var _enteredEmail = '';
-  var _enteredPassword = '';
-  var _enteredUsername = '';
+  var _enteredEmail = ''; // NON-NLS
+  var _enteredPassword = ''; // NON-NLS
+  var _enteredUsername = ''; // NON-NLS
   var _isAuthenticating = false;
 
   void showErrorSnackbar(String message) {
@@ -32,6 +34,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     }
   }
 
+  @NonNls
   void _submit() async {
     final isValid = _form.currentState!.validate();
     if (!isValid) {
@@ -101,7 +104,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     ),
                     const SizedBox(height: 14),
                     Text(
-                      'LISTAS INTELIGENTES',
+                      AppLocalizations.of(context)!.appTitle.toUpperCase(),
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 22,
@@ -123,8 +126,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'Endereço de email',
+                            decoration: InputDecoration(
+                              labelText:
+                                  AppLocalizations.of(context)!.emailAddress,
                             ),
                             style:
                                 Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -138,8 +142,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                             validator: (value) {
                               if (value == null ||
                                   value.trim().isEmpty ||
-                                  !value.contains('@')) {
-                                return 'Por favor digite um email válido.';
+                                  !value.contains(nonNls('@'))) {
+                                return AppLocalizations.of(context)!
+                                    .invalidEmailError;
                               }
                               return null;
                             },
@@ -149,12 +154,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           ),
                           if (!_isLogin)
                             TextFormField(
-                              decoration:
-                                  const InputDecoration(labelText: 'Seu Nome'),
+                              decoration: InputDecoration(
+                                  labelText:
+                                      AppLocalizations.of(context)!.yourName),
                               enableSuggestions: false,
                               validator: (value) {
                                 if (value == null || value.trim().length < 4) {
-                                  return 'O campo nome deve ter pelo menos 4 letras.';
+                                  return AppLocalizations.of(context)!
+                                      .fieldTooShortError4;
                                 }
                                 return null;
                               },
@@ -163,8 +170,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                               },
                             ),
                           TextFormField(
-                            decoration:
-                                const InputDecoration(labelText: 'Senha'),
+                            decoration: InputDecoration(
+                                labelText:
+                                    AppLocalizations.of(context)!.password),
                             style:
                                 Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: Theme.of(context)
@@ -174,7 +182,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                             obscureText: true,
                             validator: (value) {
                               if (value == null || value.trim().length < 6) {
-                                return 'A senha deve conter pelo menos 6 caracteres.';
+                                return AppLocalizations.of(context)!
+                                    .passwordTooShortError;
                               }
                               return null;
                             },
@@ -193,7 +202,11 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                                     Theme.of(context).colorScheme.primary,
                               ),
                               child: Text(
-                                _isLogin ? 'ENTRAR ' : 'Criar conta',
+                                _isLogin
+                                    ? AppLocalizations.of(context)!
+                                        .loginButtonLabel
+                                    : AppLocalizations.of(context)!
+                                        .createAccountButtonLabel,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -211,8 +224,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                                 });
                               },
                               child: Text(_isLogin
-                                  ? 'Crie sua conta'
-                                  : 'Já tenho uma conta'),
+                                  ? AppLocalizations.of(context)!
+                                      .createAccountLinkLabel
+                                  : AppLocalizations.of(context)!
+                                      .alreadyHaveAnAccountLinkLabel),
                             ),
                           if (!_isAuthenticating)
                             ClipRect(
@@ -220,7 +235,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                                 width: 175,
                                 child: SignInButton(
                                   Buttons.GoogleDark,
-                                  text: 'Entrar com Google',
+                                  text: AppLocalizations.of(context)!
+                                      .loginWithGoogleButtonLabel,
                                   onPressed: signInWithGoogle,
                                 ),
                               ),

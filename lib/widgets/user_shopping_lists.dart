@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_shopping/main.dart';
 import 'package:smart_shopping/widgets/my_shopping_lists.dart';
 import 'package:smart_shopping/widgets/shared_with_me.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserShoppingLists extends StatelessWidget {
   const UserShoppingLists({super.key});
@@ -22,7 +23,7 @@ class UserShoppingLists extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Minhas Listas',
+                  AppLocalizations.of(context)!.myShoppingListsTitle,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
@@ -33,7 +34,7 @@ class UserShoppingLists extends StatelessWidget {
                 Divider(color: currentMaterialScheme.outline),
                 const SizedBox(height: 12),
                 Text(
-                  'Compartilhadas Comigo',
+                  AppLocalizations.of(context)!.sharedWithMeTitle,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontWeight: FontWeight.w500,
                       ),

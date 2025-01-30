@@ -1,0 +1,57 @@
+{
+    "appTitle": "Listas Inteligentes",
+    "homePageTitle": "Início",
+    "settingsPageTitle": "Configurações",
+
+    "manageSharesPageTitle": "Gerenciar Compartilhamentos",
+    "sharedWith": "Compartilhada com:",
+    "listNotSharedYet": "Você ainda não compartilhou esta lista",
+    "somethingWentWrong": "Algo deu errado  =(",
+    "removeButtonLabel": "Remover",
+
+    "emailAddress": "Endereço de email",
+    "password": "Senha",
+    "yourNaMe": "Seu nome",
+    "loginButtonLabel": "Entrar",
+    "createAccountButtonLabel": "Criar Conta",
+    "loginWithGoogleButtonLabel": "Entrar com o Google",
+    "createAccountLinkLabel": "Criar uma conta",
+    "alreadyHaveAnAccountLinkLabel": "Já tenho uma conta",
+    "invalidEmailError": "Endereço de email inválido",
+    "fieldTooShortError4": "Este campo deve ter pelo menos 4 caracteres",
+    "authenticationFailedError": "Falha na autenticação. Por favor, verifique suas credenciais e tente novamente.",
+    "accountCreationError": "Falha na criação da conta. Por favor, tente novamente.",
+    "googleLoginError": "Falha no Login com Google. Por favor tente novamente.",
+    "passwordTooShortError": "Senha deve ter pelo menos 6 caracteres",
+
+    "newListPageTitle": "Criar Nova Lista",
+    "listCreatedMessage" : "Lista criada com sucesso",
+    "listName" : "Nome da Lista",
+    "createListButtonLabel": "Criar",
+    "cancelButtonLabel": "Cancelar",
+
+    "listPageTitle": "Visualizar Lista",
+    "listItemRemovedMessage" : "Item removido com sucesso",
+    "noItemsInList": "Nenhum item na lista. Que tal adicionar alguns?",
+    "deleteButtonLabelUpper": "EXCLUIR",
+    "listNotFoundError": "Lista não encontrada",
+
+    "myShoppingListsTitle": "Minhas Listas",
+    "sharedWithMeTitle": "Compartilhadas comigo",
+    "listDeletedMessage": "Lista excluída com sucesso",
+    "listDeleteButtonLabel": "Excluir Lista",
+    "listDeleteConfirmationMessage": "Tem certeza que deseja excluir essa lista?",
+    "listDeleteConfirmationText": "Por favor digite CONFIRMAR abaixo parta confirmar a exclusão:",
+    "listDeleteConfirmHintText": "CONFIRMAR",
+    "noListsText": "Nenhuma lista aqui. Que tal criar uma?",
+
+    "itemNameLabel": "Nome do item",
+    "itemQuantityLabel": "Quantidade",
+    "addButtonLabel": "Adicionar",
+
+    "cannotShareWithYourselfError": "Não é possível compartilhar uma lista com você mesmo.",
+    "listSharedMessage": "Lista compartilhada com sucesso",
+    "noUserFoundError": "Nenhum usuário encontrado com este endereço de email.",
+    "emailShareLabel": "Email da pessoa que você deseja compartilhar a lista:",
+    "noListsSharedText": "Nenhuma lista compartilhada com você."
+}

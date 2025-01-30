@@ -4,6 +4,7 @@ import 'package:smart_shopping/providers/auth_provider.dart';
 import 'package:smart_shopping/screens/new_shopping_list.dart';
 import 'package:smart_shopping/widgets/user_shopping_lists.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShoppingListsScreen extends ConsumerStatefulWidget {
   const ShoppingListsScreen({super.key});
@@ -34,7 +35,7 @@ class _ShoppingListsScreenState extends ConsumerState<ShoppingListsScreen> {
             ),
             const SizedBox(width: 10),
             Text(
-              'Listas Inteligentes',
+              AppLocalizations.of(context)!.appTitle,
               style: TextStyle(
                   color: currentMaterialScheme.onPrimary, letterSpacing: 1),
             ),

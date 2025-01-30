@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_shopping/Extensions/email_validator.dart';
 import 'package:smart_shopping/services/firestore_database.dart';
+import 'package:string_literal_finder_annotations/string_literal_finder_annotations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShareShoppingList extends StatefulWidget {
   const ShareShoppingList({super.key, required this.shoppingListId});
@@ -18,12 +20,12 @@ class _ShareShoppingListState extends State<ShareShoppingList> {
 
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  String _errorText = '';
+  String _errorText = ''; // NON-NLS
   bool isProcessing = false;
 
   void _handleSubmit() async {
     setState(() {
-      _errorText = '';
+      _errorText = ''; // NON-NLS
       isProcessing = true;
     });
     if (_formKey.currentState!.validate()) {
@@ -33,15 +35,16 @@ class _ShareShoppingListState extends State<ShareShoppingList> {
 
       if (currentUser.email == _emailController.text) {
         setState(() {
-          _errorText = 'Voce não pode compartilhar com você mesmo.';
+          _errorText =
+              AppLocalizations.of(context)!.cannotShareWithYourselfError;
           isProcessing = false;
         });
         return;
       }
 
       final users = await FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isEqualTo: _emailController.text)
+          .collection('users') // NON-NLS
+          .where('email', isEqualTo: _emailController.text) // NON-NLS
           .get();
 
       if (users.docs.isNotEmpty) {
@@ -50,22 +53,22 @@ class _ShareShoppingListState extends State<ShareShoppingList> {
           receiver: users.docs.first,
         );
 
-        if (!result['success']) {
+        if (!result[nonNls('success')]) {
           setState(() {
-            _errorText = result['error'];
+            _errorText = result['error']; // NON-NLS
           });
         } else {
           if (mounted) {
             ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Lista compartilhada com sucesso!'),
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(AppLocalizations.of(context)!.listSharedMessage),
             ));
             Navigator.of(context).pop();
           }
         }
       } else {
         setState(() {
-          _errorText = 'Nenhum usuário encontrado com o email informado.';
+          _errorText = AppLocalizations.of(context)!.noUserFoundError;
         });
       }
     }
@@ -76,7 +79,7 @@ class _ShareShoppingListState extends State<ShareShoppingList> {
 
   String? _validateEmail(String value) {
     if (!value.isValidEmail()) {
-      return 'Email inválido';
+      return AppLocalizations.of(context)!.invalidEmailError;
     }
 
     return null;
@@ -98,9 +101,9 @@ class _ShareShoppingListState extends State<ShareShoppingList> {
                     key: _formKey,
                     child: TextFormField(
                       controller: _emailController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText:
-                            'Email da pessoa com quem deseja compartilhar',
+                            AppLocalizations.of(context)!.emailShareLabel,
                       ),
                       maxLength: 50,
                       enableSuggestions: true,
@@ -131,7 +134,7 @@ class _ShareShoppingListState extends State<ShareShoppingList> {
                   child: isProcessing
                       ? const CircularProgressIndicator()
                       : Text(
-                          'Adicionar',
+                          AppLocalizations.of(context)!.addButtonLabel,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
@@ -142,7 +145,7 @@ class _ShareShoppingListState extends State<ShareShoppingList> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('Cancelar'),
+                  child: Text(AppLocalizations.of(context)!.cancelButtonLabel),
                 )
               ],
             )

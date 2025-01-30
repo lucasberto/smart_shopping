@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_shopping/main.dart';
 import 'package:smart_shopping/services/firestore_database.dart';
 import 'package:smart_shopping/widgets/shopping_list_tile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyShoppingLists extends StatefulWidget {
   const MyShoppingLists({
@@ -23,10 +24,10 @@ class _MyShoppingListsState extends State<MyShoppingLists> {
 
   void _deleteShoppingList(String id) async {
     await database.deleteShoppingList(id: id);
-    if (context.mounted) {
+    if (mounted) {
       ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Lista removida com sucesso!'),
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(AppLocalizations.of(context)!.listDeletedMessage),
       ));
     }
   }
@@ -37,17 +38,20 @@ class _MyShoppingListsState extends State<MyShoppingLists> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text('Remover Lista'),
+                title:
+                    Text(AppLocalizations.of(context)!.listDeleteButtonLabel),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Tem certeza que deseja remover esta lista?'),
+                    Text(AppLocalizations.of(context)!
+                        .listDeleteConfirmationMessage),
                     const SizedBox(height: 20),
-                    const Text(
-                        'Digite CONFIRMAR abaixo para confirmar a remocão:'),
+                    Text(AppLocalizations.of(context)!
+                        .listDeleteConfirmationText),
                     TextField(
-                      decoration: const InputDecoration(
-                        hintText: 'CONFIRMAR',
+                      decoration: InputDecoration(
+                        hintText: AppLocalizations.of(context)!
+                            .listDeleteConfirmHintText,
                       ),
                       controller: _confirmationController,
                     )
@@ -56,18 +60,22 @@ class _MyShoppingListsState extends State<MyShoppingLists> {
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(false),
-                    child: const Text('Cancelar'),
+                    child:
+                        Text(AppLocalizations.of(context)!.cancelButtonLabel),
                   ),
                   TextButton(
                     onPressed: () {
-                      if (_confirmationController.text == 'CONFIRMAR') {
+                      if (_confirmationController.text ==
+                          AppLocalizations.of(context)!
+                              .listDeleteConfirmHintText) {
                         _deleteShoppingList(id);
                         Navigator.of(context).pop(true);
                       } else {
                         Navigator.of(context).pop(false);
                       }
                     },
-                    child: const Text('Remover'),
+                    child: Text(
+                        AppLocalizations.of(context)!.deleteButtonLabelUpper),
                   ),
                 ],
               );
@@ -87,14 +95,14 @@ class _MyShoppingListsState extends State<MyShoppingLists> {
         }
 
         if (!snapshots.hasData || snapshots.data!.docs.isEmpty) {
-          return const Center(
-            child: Text('Sem listas de compra. Que tal criar uma?'),
+          return Center(
+            child: Text(AppLocalizations.of(context)!.noListsText),
           );
         }
 
         if (snapshots.hasError) {
-          return const Center(
-            child: Text('Algo deu errado  =('),
+          return Center(
+            child: Text(AppLocalizations.of(context)!.somethingWentWrong),
           );
         }
 
@@ -111,11 +119,11 @@ class _MyShoppingListsState extends State<MyShoppingLists> {
                   background: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     color: const Color.fromARGB(255, 255, 214, 212),
-                    child: const Row(
+                    child: Row(
                       children: [
                         Text(
-                          'EXCLUIR',
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.deleteButtonLabelUpper,
+                          style: const TextStyle(
                             color: Color.fromARGB(255, 194, 47, 36),
                           ),
                         ),

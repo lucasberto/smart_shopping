@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -51,7 +42,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBNCTLWknPd78ZUPCt6KZXKxLHF3Y49kCg',
-    appId: '1:965094397120:android:3e1122e4c45e28175c0925',
+    appId: '1:965094397120:android:70a4ab7117fbac825c0925',
     messagingSenderId: '965094397120',
     projectId: 'smart-shopping-fa064',
     storageBucket: 'smart-shopping-fa064.appspot.com',
@@ -63,6 +54,40 @@ class DefaultFirebaseOptions {
     messagingSenderId: '965094397120',
     projectId: 'smart-shopping-fa064',
     storageBucket: 'smart-shopping-fa064.appspot.com',
+    androidClientId: '965094397120-1disucemhfbnbqmfjqdcc2h6o8thb3du.apps.googleusercontent.com',
+    iosClientId: '965094397120-md4vbuv51thd2ojmpar7pcmsdcra4d4h.apps.googleusercontent.com',
     iosBundleId: 'com.example.smartShopping',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAC1Q6SSnh3hbDI2uxOvI43mOc8rWYb6Fg',
+    appId: '1:965094397120:web:a89b326b6a8fe7575c0925',
+    messagingSenderId: '965094397120',
+    projectId: 'smart-shopping-fa064',
+    authDomain: 'smart-shopping-fa064.firebaseapp.com',
+    storageBucket: 'smart-shopping-fa064.appspot.com',
+    measurementId: 'G-KMREEHCT5L',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCPQTPWbxDaWspvDtUhjLsCeb_UqYUvxfk',
+    appId: '1:965094397120:ios:f67926dbe01a7aef5c0925',
+    messagingSenderId: '965094397120',
+    projectId: 'smart-shopping-fa064',
+    storageBucket: 'smart-shopping-fa064.appspot.com',
+    androidClientId: '965094397120-1disucemhfbnbqmfjqdcc2h6o8thb3du.apps.googleusercontent.com',
+    iosClientId: '965094397120-md4vbuv51thd2ojmpar7pcmsdcra4d4h.apps.googleusercontent.com',
+    iosBundleId: 'com.example.smartShopping',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAC1Q6SSnh3hbDI2uxOvI43mOc8rWYb6Fg',
+    appId: '1:965094397120:web:95adc01e1b7dd3095c0925',
+    messagingSenderId: '965094397120',
+    projectId: 'smart-shopping-fa064',
+    authDomain: 'smart-shopping-fa064.firebaseapp.com',
+    storageBucket: 'smart-shopping-fa064.appspot.com',
+    measurementId: 'G-EBWFVF86YR',
+  );
+
 }

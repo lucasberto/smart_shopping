@@ -1,0 +1,59 @@
+{
+    "appTitle": "Smart Lists",
+    "homePageTitle": "Home",
+    "settingsPageTitle": "Settings",
+
+    "manageSharesPageTitle": "Manage Shares",
+    "sharedWith": "Shared with:",
+    "listNotSharedYet": "You haven't shared this list yet",
+    "somethingWentWrong": "Something went wrong  =(",
+    "removeButtonLabel": "Remove",
+
+    "emailAddress": "Email address",
+    "password": "Password",
+    "yourName": "Your name",
+    "loginButtonLabel": "Login",
+    "createAccountButtonLabel": "Create Account",
+    "loginWithGoogleButtonLabel": "Login with Google",
+    "createAccountLinkLabel": "Create an account",
+    "alreadyHaveAnAccountLinkLabel": "I already have an account",
+    "invalidEmailError": "Invalid email address",
+    "fieldTooShortError4": "This field must have at least 4 characters",
+    "authenticationFailedError": "Authentication failed. Please verify your credentials and try again.",
+    "accountCreationError": "Account creation failed. Please try again.",
+    "googleLoginError": "Google login failed. Please try again.",
+    "passwordTooShortError": "Password must have at least 6 characters",
+
+    "newListPageTitle": "Create New List",
+    "listCreatedMessage" : "List successfully created",
+    "listName" : "List name",
+    "createListButtonLabel": "Create",
+    "cancelButtonLabel": "Cancel",
+
+
+    "listPageTitle": "View List",
+    "listItemRemovedMessage" : "List item removed successfully",
+    "noItemsInList": "No items in this list",
+    "deleteButtonLabelUpper": "DELETE",
+    "listNotFoundError": "List not found",
+
+    "myShoppingListsTitle": "My Lists",
+    "sharedWithMeTitle": "Shared with me",
+    "listDeletedMessage": "List deleted successfully",
+    "listDeleteButtonLabel": "Delete List",
+    "listDeleteConfirmationMessage": "Are you sure you want to delete this list?",
+    "listDeleteConfirmationText": "Please type CONFIRM below to confirm deletion:",
+    "listDeleteConfirmHintText": "CONFIRM",
+    "noListsText": "No lists here. Try creating one.",
+
+    "itemNameLabel" : "Item name",
+    "itemQuantityLabel" : "Quantity",
+    "addButtonLabel": "Add",
+
+    "cannotShareWithYourselfError": "Não é possível compartilhar uma lista com você mesmo.",
+    "listSharedMessage": "List shared successfully",
+    "noUserFoundError": "No user found with this email address",
+    "emailShareLabel": "Email of the person you want to share with:",
+    "noListsSharedText": "No lists shared with you."
+
+}

@@ -2,4 +2,10 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   plugins:
-    - custom_lint
+    - string_literal_finder
+
+string_literal_finder:
+  exclude_globs:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/firebase_options.dart"

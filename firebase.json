@@ -1,6 +1,1 @@
-{
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  }
-}
+{"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"},"flutter":{"platforms":{"android":{"default":{"projectId":"smart-shopping-fa064","appId":"1:965094397120:android:70a4ab7117fbac825c0925","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"smart-shopping-fa064","configurations":{"android":"1:965094397120:android:70a4ab7117fbac825c0925","ios":"1:965094397120:ios:f67926dbe01a7aef5c0925","macos":"1:965094397120:ios:f67926dbe01a7aef5c0925","web":"1:965094397120:web:a89b326b6a8fe7575c0925","windows":"1:965094397120:web:95adc01e1b7dd3095c0925"}}}}}}

@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:smart_shopping/main.dart';
+import 'package:string_literal_finder_annotations/string_literal_finder_annotations.dart';
 
 part 'auth_provider.g.dart';
 
@@ -23,12 +27,13 @@ class Auth extends _$Auth {
         password: password,
       );
       return {
-        'success': true,
+        'success': true, // NON-NLS
       };
     } on FirebaseAuthException {
       return {
-        'success': false,
-        'error': 'Problema na autenticação. Verifique suas credenciais.',
+        'success': false, // NON-NLS
+        'error': AppLocalizations.of(navigatorKey.currentContext!)! // NON-NLS
+            .authenticationFailedError,
       };
     }
   }
@@ -45,20 +50,21 @@ class Auth extends _$Auth {
       );
 
       await FirebaseFirestore.instance
-          .collection('users')
+          .collection('users') // NON-NLS
           .doc(userCredentials.user!.uid)
           .set({
-        'username': username,
-        'email': email,
+        'username': username, // NON-NLS
+        'email': email, // NON-NLS
       });
 
       return {
-        'success': true,
+        'success': true, // NON-NLS
       };
     } catch (e) {
       return {
-        'success': false,
-        'error': 'Erro ao criar conta.',
+        'success': false, // NON-NLS
+        'error': AppLocalizations.of(navigatorKey.currentContext!)! // NON-NLS
+            .accountCreationError,
       };
     }
   }
@@ -82,23 +88,29 @@ class Auth extends _$Auth {
 
       final user = FirebaseAuth.instance.currentUser!;
 
-      final storedUser =
-          await FirebaseFirestore.instance.doc('/users/${user.uid}').get();
+      final storedUser = await FirebaseFirestore.instance
+          .doc('/users/${user.uid}') // NON-NLS
+          .get(); // NON-NLS
 
       if (!storedUser.exists) {
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-          'username': googleUser.displayName,
-          'email': googleUser.email,
+        await FirebaseFirestore.instance
+            .collection(nonNls('users'))
+            .doc(user.uid)
+            .set({
+          'username': googleUser.displayName, // NON-NLS
+          'email': googleUser.email, // NON-NLS
         });
       }
 
       return {
-        'success': true,
+        'success': true, // NON-NLS
       };
-    } catch (e) {
+    } catch (e, stack) {
+      FirebaseCrashlytics.instance.recordError(e, stack);
       return {
-        'success': false,
-        'error': 'Erro ao realizar login com o Google. Tente novamente.',
+        'success': false, // NON-NLS
+        'error': // NON-NLS
+            AppLocalizations.of(navigatorKey.currentContext!)!.googleLoginError,
       };
     }
   }

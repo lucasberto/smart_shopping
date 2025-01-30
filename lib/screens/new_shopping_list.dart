@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_shopping/main.dart';
 import 'package:smart_shopping/services/firestore_database.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewShoppingListScreen extends StatefulWidget {
   const NewShoppingListScreen({super.key});
@@ -29,8 +30,8 @@ class _NewShoppingListScreenState extends State<NewShoppingListScreen> {
 
     if (mounted) {
       ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Lista criada com sucesso!'),
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(AppLocalizations.of(context)!.listCreatedMessage),
       ));
       Navigator.of(context).pop();
     }
@@ -45,7 +46,7 @@ class _NewShoppingListScreenState extends State<NewShoppingListScreen> {
           color: currentMaterialScheme.onPrimary,
         ),
         title: Text(
-          'Nova Lista de Compras',
+          AppLocalizations.of(context)!.newListPageTitle,
           style: TextStyle(
             color: currentMaterialScheme.onPrimary,
           ),
@@ -64,8 +65,8 @@ class _NewShoppingListScreenState extends State<NewShoppingListScreen> {
                     autocorrect: true,
                     autofocus: true,
                     enableSuggestions: true,
-                    decoration:
-                        const InputDecoration(labelText: 'Nome da lista'),
+                    decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.listName),
                     controller: _listNameController,
                   ),
                 ),
@@ -80,7 +81,7 @@ class _NewShoppingListScreenState extends State<NewShoppingListScreen> {
                     backgroundColor: currentMaterialScheme.primary,
                   ),
                   child: Text(
-                    'Criar',
+                    AppLocalizations.of(context)!.createListButtonLabel,
                     style: TextStyle(
                       color: currentMaterialScheme.onPrimary,
                     ),
@@ -91,7 +92,7 @@ class _NewShoppingListScreenState extends State<NewShoppingListScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Cancelar'),
+                  child: Text(AppLocalizations.of(context)!.cancelButtonLabel),
                 )
               ],
             ),

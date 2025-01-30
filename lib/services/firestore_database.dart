@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:smart_shopping/main.dart';
+import 'package:string_literal_finder_annotations/string_literal_finder_annotations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FirestoreDatabase {
   final _db = FirebaseFirestore.instance;
 
+  @NonNls
   Future syncShoppingListItems({
     required bool isShared,
     required String shoppingListId,
@@ -65,6 +69,7 @@ class FirestoreDatabase {
     }
   }
 
+  @NonNls
   Stream shoppingListsStream({required bool isShared}) {
     final user = FirebaseAuth.instance.currentUser!;
     return _db
@@ -75,6 +80,7 @@ class FirestoreDatabase {
         .snapshots();
   }
 
+  @NonNls
   Future createShoppingList({required String name}) {
     final user = FirebaseAuth.instance.currentUser!;
     return _db
@@ -89,6 +95,7 @@ class FirestoreDatabase {
     );
   }
 
+  @NonNls
   Future deleteShoppingList({required String id}) async {
     final user = FirebaseAuth.instance.currentUser!;
 
@@ -109,6 +116,7 @@ class FirestoreDatabase {
     return await batch.commit();
   }
 
+  @NonNls
   Future<Map<String, dynamic>> shareShoppingList({
     required String shoppingListId,
     required receiver,
@@ -125,7 +133,8 @@ class FirestoreDatabase {
 
     if (shoppingList.data() == null) {
       return {
-        'error': 'Lista de compras não encontrada.',
+        'error': AppLocalizations.of(navigatorKey.currentContext!)!
+            .listNotFoundError,
         'success': false,
       };
     }
@@ -158,6 +167,7 @@ class FirestoreDatabase {
     };
   }
 
+  @NonNls
   Future<List<Map<String, dynamic>>> getSharedWithUsers(
       {required String shoppingListId}) async {
     final user = FirebaseAuth.instance.currentUser!;
@@ -182,6 +192,7 @@ class FirestoreDatabase {
     return returnData;
   }
 
+  @NonNls
   Future removeShare({
     required String userId,
     required String shoppingListId,
@@ -199,6 +210,7 @@ class FirestoreDatabase {
   }
 
   /* ****************** Shopping List Items ******************** */
+  @NonNls
   Stream shoppingListItemsStream(
       {required String shoppingListId, required bool isShared}) {
     final user = FirebaseAuth.instance.currentUser!;
@@ -213,6 +225,7 @@ class FirestoreDatabase {
         .snapshots();
   }
 
+  @NonNls
   Future createShoppingListItem({
     required String shoppingListId,
     required String name,
@@ -237,6 +250,7 @@ class FirestoreDatabase {
     syncShoppingListItems(isShared: isShared, shoppingListId: shoppingListId);
   }
 
+  @NonNls
   Future deleteShoppingListItem({
     required String shoppingListId,
     required String id,
@@ -255,6 +269,7 @@ class FirestoreDatabase {
     syncShoppingListItems(isShared: isShared, shoppingListId: shoppingListId);
   }
 
+  @NonNls
   Future toggleShoppingListItem({
     required String shoppingListId,
     required String id,

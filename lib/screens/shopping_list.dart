@@ -5,6 +5,7 @@ import 'package:smart_shopping/screens/manage_shares.dart';
 import 'package:smart_shopping/services/firestore_database.dart';
 import 'package:smart_shopping/widgets/new_item.dart';
 import 'package:smart_shopping/widgets/shopping_list_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShoppingListScreen extends StatefulWidget {
   const ShoppingListScreen({
@@ -35,8 +36,8 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
 
     if (mounted) {
       ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Ítem removido com sucesso!'),
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(AppLocalizations.of(context)!.listItemRemovedMessage),
       ));
     }
   }
@@ -58,7 +59,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
           color: currentMaterialScheme.onPrimary,
         ),
         title: Text(
-          'Visualizar Lista',
+          AppLocalizations.of(context)!.listPageTitle,
           style: TextStyle(
               color: currentMaterialScheme.onPrimary, letterSpacing: 1),
         ),
@@ -143,14 +144,15 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                   }
 
                   if (!snapshots.hasData || snapshots.data!.docs.isEmpty) {
-                    return const Center(
-                      child: Text('Sem itens nesta lista. Que tal adicionar?'),
+                    return Center(
+                      child: Text(AppLocalizations.of(context)!.noItemsInList),
                     );
                   }
 
                   if (snapshots.hasError) {
-                    return const Center(
-                      child: Text('Algo deu errado  =('),
+                    return Center(
+                      child: Text(
+                          AppLocalizations.of(context)!.somethingWentWrong),
                     );
                   }
 
@@ -170,10 +172,11 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 16),
                                 color: const Color.fromARGB(255, 255, 214, 212),
-                                child: const Row(children: [
+                                child: Row(children: [
                                   Text(
-                                    'EXCLUIR',
-                                    style: TextStyle(
+                                    AppLocalizations.of(context)!
+                                        .deleteButtonLabelUpper,
+                                    style: const TextStyle(
                                       color: Color.fromARGB(255, 194, 47, 36),
                                     ),
                                   ),
@@ -181,9 +184,11 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                               ),
                               child: ShoppingListItem(
                                 id: loadedItems[index].id,
-                                name: loadedItems[index]['name'],
-                                quantity: loadedItems[index]['quantity'],
-                                checked: loadedItems[index]['checked'],
+                                name: loadedItems[index]['name'], //NON-NLS
+                                quantity: loadedItems[index]
+                                    ['quantity'], //NON-NLS
+                                checked: loadedItems[index]
+                                    ['checked'], //NON-NLS
                                 onCheckItem: _toggleItem,
                               ),
                             ),

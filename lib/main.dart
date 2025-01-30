@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +8,26 @@ import 'package:smart_shopping/screens/shopping_lists.dart';
 import 'package:smart_shopping/screens/splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_shopping/theme.dart';
+import 'dart:ui';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Pass all uncaught "fatal" errors from the framework to Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   runApp(const ProviderScope(child: MainApp()));
 }
 
@@ -24,10 +39,21 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Smart Lists',
+      title: 'Smart Shopping', // NON-NLS
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''), // NON-NLS
+        Locale('pt', 'BR'), // NON-NLS
+      ],
       theme: MaterialTheme(Theme.of(context).textTheme).light(),
       darkTheme: MaterialTheme(Theme.of(context).textTheme).dark(),
       home: const Home(),
+      navigatorKey: navigatorKey,
     );
   }
 }
