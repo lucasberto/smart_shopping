@@ -31,3 +31,12 @@ Smart Shopping is a dynamic, real-time collaborative shopping list application b
 4. Run the app
 
 > **Important**: The `google-services.json` file is required but not included in this repository for security reasons. You'll need to generate your own through the Firebase Console.
+
+## Localization
+
+The app currently supports:
+
+- English (en)
+- Brazilian Portuguese (pt-BR)
+
+Since the app uses l10n, adding new languages is straightforward. The localization files can be found in the `lib/l10n` directory.
