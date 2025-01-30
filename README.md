@@ -20,19 +20,12 @@ Smart Shopping is a dynamic, real-time collaborative shopping list application t
 
 ## Technical Stack
 
-- Flutter for cross-platform development
+- Flutter
 - Firebase Suite:
   - Authentication for secure user management
   - Firestore for real-time data synchronization
   - Storage for data persistence
   - Analytics for usage insights
-
-## Getting Started
-
-1. Clone the repository
-2. Set up Firebase in your project
-3. Add your `google-services.json` to `android/app/`
-4. Run the app
 
 > **Important**: The `google-services.json` file is required but not included in this repository for security reasons. You'll need to generate your own through the Firebase Console.
 
@@ -61,29 +54,22 @@ Smart Shopping é um aplicativo de lista de compras colaborativo e em tempo real
 - Gerenciamento intuitivo de itens (adicionar/remover)
 - Funcionalidade multi-propósito (funciona também como lista de tarefas!)
 
-## Stack Técnica
+## Stack
 
-- Flutter para desenvolvimento multiplataforma
+- Flutter
 - Suite Firebase:
   - Authentication para gerenciamento seguro de usuários
   - Firestore para sincronização em tempo real
   - Storage para persistência de dados
   - Analytics para insights de uso
 
-## Como Começar
-
-1. Clone o repositório
-2. Configure o Firebase em seu projeto
-3. Adicione seu `google-services.json` em `android/app/`
-4. Execute o aplicativo
-
 > **Importante**: O arquivo `google-services.json` é necessário mas não está incluído neste repositório por motivos de segurança. Você precisará gerar o seu próprio através do Console do Firebase.
 
-## Localização
+## Idiomas
 
 O aplicativo atualmente suporta:
 
 - Inglês (en)
 - Português Brasileiro (pt-BR)
 
-Como o app utiliza l10n, adicionar novos idiomas é simples. Os arquivos de localização podem ser encontrados no diretório `lib/l10n`.
+Como o app utiliza l10n, adicionar novos idiomas é simples. Os arquivos de idioma podem ser encontrados no diretório `lib/l10n`.
